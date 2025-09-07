@@ -7,8 +7,8 @@ const API_BASE_URL =
 // Create axios instance with default config
 const authAPI = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 10000,
-  withCredentials: false,
+  timeout: 20000,
+  withCredentials: true,
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
