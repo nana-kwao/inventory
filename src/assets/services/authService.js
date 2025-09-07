@@ -1,13 +1,12 @@
 import axios from "axios";
 
 // Base API URL
-const API_BASE_URL =
-  "https://inventory-server-tmqz.onrender.com:10000/api/auth";
+const API_BASE_URL = "https://inventory-server-tmqz.onrender.com/api/auth";
 
 // Create axios instance with default config
 const authAPI = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 20000,
+  timeout: 10000,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
