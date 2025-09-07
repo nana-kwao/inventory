@@ -1,7 +1,8 @@
 import axios from "axios";
 
 // Base API URL
-const API_BASE_URL = "http://localhost:5000/api/auth";
+const API_BASE_URL =
+  "https://inventory-server-tmqz.onrender.com:10000/api/auth";
 
 // Create axios instance with default config
 const authAPI = axios.create({
