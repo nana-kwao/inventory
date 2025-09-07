@@ -1,5 +1,6 @@
 import "./App.css";
 import { Link } from "react-router";
+import Logout from "./assets/components/Logout";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Link to={"/signup"}>
         <button>Signup</button>
       </Link>
+      <Logout />
     </>
   );
 }
