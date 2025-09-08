@@ -11,9 +11,13 @@ function App() {
       <Link to={"/signup"}>
         <button>Signup</button>
       </Link>
+      <Link to={"/forgot-password"}>
+        <button>Forgot Password</button>
+      </Link>
       <Logout />
     </>
   );
 }
+
 
 export default App;
