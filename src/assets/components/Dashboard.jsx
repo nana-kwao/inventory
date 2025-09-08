@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import Logout from "./Logout";
 
 function Dashboard() {
   const { user } = useSelector((state) => state.User);
@@ -13,6 +14,7 @@ function Dashboard() {
         <p>Business Name: {user.business}</p>
         <p>Phone: {user.phone}</p>
       </div>
+      <Logout />
     </>
   );
 }
