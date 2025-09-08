@@ -56,6 +56,10 @@ function ResetPassword() {
 
   return (
     <>
+      <div>
+        <h2>Reset Password</h2>
+        <p>Enter new password</p>
+      </div>
       <LoginForm onSubmit={handleForgetPasswordResponse}>
         <InputFieldWrapper className={error ? "input-error" : ""}>
           <i className="fa fa-key icon" />

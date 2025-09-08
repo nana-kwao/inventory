@@ -14,11 +14,17 @@ const signupValidationSchema = Joi.object({
     "string.email": "Please enter a valid email address.",
     "string.empty": "Email is required.",
   }),
-  phone: Joi.string().min(10).max(10).required().messages({
-    "string.min": "Mobile number cannot be less than 10",
-    "string.max": "Mobile number cannot be more than 10",
-    "string.empty": "Mobile number cannot be empty",
-  }),
+  phone: Joi.string()
+    .min(10)
+    .max(13)
+    .required()
+    .messages({
+      "string.min": "Mobile number cannot be less than 10",
+      "string.max": "Mobile number cannot be more than 10",
+      "string.empty": "Mobile number cannot be empty",
+    })
+    .regex(/^(?:\+233|0)\d{9}$/)
+    .messages({ "string.pattern.base": "Telephone example format 0234567890" }),
   password: Joi.string()
     .min(8)
     .required()
@@ -31,6 +37,14 @@ const signupValidationSchema = Joi.object({
       "string.pattern.base":
         "Password must contain at least one uppercase letter, one lowercase letter, and one number.",
     }),
+});
+
+//forgot email
+const forgotPasswordValidationSchema = Joi.object({
+  email: Joi.string().email().required().messages({
+    "string.email": "Please enter a valid email address.",
+    "string.empty": "Email is required.",
+  }),
 });
 
 //reset password
@@ -129,6 +143,7 @@ const orderValidationSchema = Joi.object({
 export {
   signupValidationSchema,
   resetPasswordValidationSchema,
+  forgotPasswordValidationSchema,
   loginValidationSchema,
   productValidationSchema,
   stockValidationSchema,

@@ -55,10 +55,10 @@ button:focus-visible {
 }
 
 .input-error input {
-  border: 0.2em solid red !important;
+  border: 0.2em solid rgba(255, 0, 0, 0.575) !important;
 }
 .error-text {
-  color: red !important;
+  color: rgba(255, 0, 0, 0.575) !important;
 }
 
 @media (prefers-color-scheme: light) {
