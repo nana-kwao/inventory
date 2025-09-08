@@ -13,7 +13,7 @@ export default defineConfig({
         secure: false,
       }
     }
-  }
+  },
 build: {
     outDir: 'dist',
     // Generate index.html for all routes
@@ -22,5 +22,5 @@ build: {
         main: './index.html'
       }
     }
-  },
+  }
 })
