@@ -3,7 +3,7 @@ import authAPI from "./authService";
 const resetpasswordService = async (resettoken, password) => {
   try {
     const { data } = await authAPI.post(
-      `/reset-password?resettoken${resettoken}`,
+      `/reset-password?resettoken=${resettoken}`,
       password
     );
     if (data.success) return data;
