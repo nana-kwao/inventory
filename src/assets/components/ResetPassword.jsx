@@ -1,14 +1,15 @@
 import resetpasswordService from "../services/resetpasswordService";
 import { useState } from "react";
 import { resetPasswordValidationSchema } from "../services/inputvalidation";
-import { useParams, useNavigate } from "react-router";
+import { useSearchParams, useNavigate } from "react-router";
 import { LoginForm, InputFieldWrapper, Button } from "milesuicomponents";
 
 function ResetPassword() {
   const [userData, setUserData] = useState({ password: "" });
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  const { resettoken } = useParams();
+  const [searchParams] = useSearchParams();
+  const resettoken = searchParams.get("resettoken");
   const dashboard = useNavigate();
 
   //show or hide password
