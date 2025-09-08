@@ -126,7 +126,7 @@ function Signup() {
               justifyContent: "",
             }}
           >
-            <input type="checkbox" style={{ width: "0.8rem" }} required />
+            <input type="checkbox" style={{ width: "11px" }} required />
             <span style={{ fontSize: "12.5px", marginLeft: "0.5rem" }}>
               <Link to={"terms"}>I agree to all terms and conditions</Link>
             </span>

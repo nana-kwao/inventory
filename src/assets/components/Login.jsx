@@ -86,7 +86,7 @@ function Login() {
               justifyContent: "space-between",
             }}
           >
-            <input type="checkbox" style={{ width: "0.8rem" }} />
+            <input type="checkbox" style={{ width: "11px" }} />
             <span style={{ fontSize: "14px", marginLeft: "-2.5rem" }}>
               remember me!
             </span>
