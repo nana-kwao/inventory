@@ -1,10 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Routes,
   Route,
-  BrowserRouter,
 } from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
@@ -15,7 +14,7 @@ import ResetPassword from "./assets/components/ResetPassword.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/signup" element={<Signup />} />
@@ -23,6 +22,6 @@ createRoot(document.getElementById("root")).render(
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password/:resettoken" element={<ResetPassword />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   </StrictMode>
 );
