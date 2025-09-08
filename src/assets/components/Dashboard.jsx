@@ -6,7 +6,7 @@ function Dashboard() {
   return (
     <>
       <div>
-        <p>Id : {user._id}</p>
+        <p>Id : {user.id}</p>
         <p>UUID: {user.uuid}</p>
         <p>Email: {user.email}</p>
         <p>Name: {user.name}</p>
