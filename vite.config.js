@@ -14,4 +14,13 @@ export default defineConfig({
       }
     }
   }
+build: {
+    outDir: 'dist',
+    // Generate index.html for all routes
+    rollupOptions: {
+      input: {
+        main: './index.html'
+      }
+    }
+  },
 })
