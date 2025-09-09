@@ -75,7 +75,12 @@ function Signup() {
       }
     } catch (error) {
       dispatch(setStatus("error"));
-      dispatch(setMessage("Server error. Please try again later"));
+      const errorMessage =
+        error?.response?.data?.message ||
+        error?.message ||
+        "Server error. Please try again later";
+
+      dispatch(setMessage(errorMessage));
       throw error;
     }
   };

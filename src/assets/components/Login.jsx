@@ -58,18 +58,25 @@ function Login() {
     try {
       const data = await loginService(userData);
 
-      if (data?.success === true) {
+      if (data?.success) {
         sessionStorage.setItem("user", JSON.stringify(data.data));
         dispatch(setUser(data.data));
         dispatch(setStatus("success"));
         dashboard("/dashboard");
+      } else {
+        dispatch(setStatus("error"));
+        dispatch(setMessage(data?.message || "Error Logging in"));
+        return;
       }
-      dispatch(setStatus("error"));
-      dispatch(setMessage(data?.message || "Error Logging in"));
     } catch (error) {
       dispatch(setStatus("error"));
-      dispatch(setMessage("Server error. Please try again later"));
-      throw error; // not Error(error)
+      const errorMessage =
+        error?.response?.data?.message ||
+        error?.message ||
+        "Server error. Please try again later";
+
+      dispatch(setMessage(errorMessage));
+      throw error; 
     }
   };
 
