@@ -1,6 +1,6 @@
 import loginService from "../services/loginService";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { InputFieldWrapper, LoginForm, Button } from "milesuicomponents";
 import { loginValidationSchema } from "../services/inputvalidation";
 import { Link } from "react-router-dom";
@@ -20,9 +20,16 @@ function Login() {
 
   const dashboard = useNavigate();
   const dispatch = useDispatch();
-  const { status, message } = useSelector((state) => state.User);
+  const { user,status, message } = useSelector((state) => state.User);
 
   const [showPassword, setShowPassword] = useState(false);
+
+  // Check if already logged in
+    useEffect(() => {
+      if (user !== null) {
+        dashboard("/dashboard");
+      }
+    }, [user, dashboard]);
 
   const handleShowPassword = (event) => {
     if (event) event.preventDefault();
@@ -117,7 +124,7 @@ function Login() {
         <Button
           type="submit"
           style={{ marginTop: "1rem" }}
-          disabled={status === "loading"}
+          disabled={status === "loading" ? true : false}
         >
           {status === "loading" ? "...loading" : "Login"}
         </Button>

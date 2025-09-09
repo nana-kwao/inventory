@@ -17,7 +17,7 @@ function Logout() {
       if (data.success) {
         dispatch(resetUser());
         dispatch(setMessage("Logged out Successful"));
-        // dashboard("/login");
+        dashboard("/login");
       } else {
         dispatch(setMessage(data.message || "Failed to logout"));
       }
