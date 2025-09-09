@@ -20,18 +20,18 @@ function Login() {
 
   const dashboard = useNavigate();
   const dispatch = useDispatch();
-  const { user, status, message } = useSelector((state) => state.User);
+  const { status, message } = useSelector((state) => state.User);
 
   const [showPassword, setShowPassword] = useState(false);
 
   // Check if already logged in
   useEffect(() => {
-    const user = sessionStorage.getItem("user");
-    if (user) {
-      dispatch(setUser(JSON.parse(user)));
+    const _user = sessionStorage.getItem("user");
+    if (_user) {
+      dispatch(setUser(JSON.parse(_user)));
       dashboard("/dashboard");
     }
-  }, [user, dashboard, dispatch]);
+  }, [dashboard, dispatch]);
 
   const handleShowPassword = (event) => {
     if (event) event.preventDefault();

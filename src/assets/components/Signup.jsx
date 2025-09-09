@@ -23,16 +23,16 @@ function Signup() {
 
   const dashboard = useNavigate();
   const dispatch = useDispatch();
-  const { user, status, message } = useSelector((state) => state.User);
+  const { status, message } = useSelector((state) => state.User);
 
   // Check if already logged in
   useEffect(() => {
-    const user = sessionStorage.getItem("user");
-    if (user) {
-      dispatch(setUser(JSON.parse(user)));
+    const _user = sessionStorage.getItem("user");
+    if (_user) {
+      dispatch(setUser(JSON.parse(_user)));
       dashboard("/dashboard");
     }
-  }, [user, dashboard, dispatch]);
+  }, [dashboard, dispatch]);
 
   // Show or hide password
   const [showPassword, setShowPassword] = useState(false);
