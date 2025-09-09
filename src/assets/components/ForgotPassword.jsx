@@ -4,8 +4,6 @@ import { LoginForm, InputFieldWrapper, Button } from "milesuicomponents";
 import { forgotPasswordValidationSchema } from "../services/inputvalidation";
 import { Link } from "react-router";
 
-
-
 function ForgotPassword() {
   const [userData, setUserData] = useState({
     email: "",
@@ -21,6 +19,8 @@ function ForgotPassword() {
   const handleForgetPasswordResponse = async (event) => {
     if (event) event.preventDefault();
     setError("");
+
+    sessionStorage.removeItem("user");
 
     const { error } = forgotPasswordValidationSchema.validate(userData);
     if (error) {
