@@ -10,6 +10,9 @@ import Login from "./assets/components/Login.jsx";
 import ForgotPassword from "./assets/components/ForgotPassword.jsx";
 import ResetPassword from "./assets/components/ResetPassword.jsx";
 import Dashboard from "./assets/components/Dashboard.jsx";
+import Products from "./assets/components/Products.jsx";
+import Overview from "./assets/components/Overview.jsx";
+import Product from "./assets/components/Product.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -21,7 +24,11 @@ createRoot(document.getElementById("root")).render(
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/" element={<ResetPassword />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />}>
+            <Route path="products" element={<Products />}/>
+            <Route path="add-product" element={<Product />} />
+            <Route path="overview" element={<Overview />} />
+          </Route>
         </Routes>
       </Router>
     </Provider>

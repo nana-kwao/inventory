@@ -55,19 +55,22 @@ function Login() {
 
     dispatch(setStatus("loading"));
 
-    const data = await loginService(userData);
-
-    if (data.success) {
-      sessionStorage.setItem("user", JSON.stringify(data.data));
-      dispatch(setUser(data.data));
-      dispatch(setStatus("success"));
-      dashboard("/dashboard");
-    } else {
-      dispatch(setMessage(data.message || "Error Logging in"));
+    try {
+      const data = await loginService(userData);
+      if (data.success === true) {
+        sessionStorage.setItem("user", JSON.stringify(data.data));
+        dispatch(setUser(data.data));
+        dispatch(setStatus("success"));
+        dashboard("/dashboard");
+      } else {
+        dispatch(setStatus("error"));
+        dispatch(setMessage(data.message || "Error Logging in"));
+      }
+    } catch (error) {
       dispatch(setStatus("error"));
+      dispatch(setMessage("Server error. Please try again later"));
+      throw error;
     }
-
-    console.log(data.message);
   };
 
   return (

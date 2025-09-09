@@ -55,10 +55,14 @@ button:focus-visible {
 }
 
 .input-error input {
-  border: 0.2em solid rgba(255, 0, 0, 0.575) !important;
+  border: 0.2em solid #ff000093 !important;
 }
 .error-text {
-  color: rgba(255, 0, 0, 0.575) !important;
+  color: #ff000093 !important;
+}
+
+.hide-product-form {
+  display: none;
 }
 
 @media (prefers-color-scheme: light) {

@@ -3,12 +3,19 @@ import authAPI from "./authService";
 const logoutService = async () => {
   try {
     const { data } = await authAPI.post("/logout");
-    if (data.success) return data;
-
-    return JSON.stringify({ error: "Request failed" });
+    return {
+      success: true,
+      data: data.data,
+      message: "Logout successful",
+    };
   } catch (error) {
-    console.log("Logout failed", error);
-    throw error;
+    const message =
+      error?.response?.data?.message || "Something went wrong during logout";
+    return {
+      success: false,
+      data: null,
+      message,
+    };
   }
 };
 

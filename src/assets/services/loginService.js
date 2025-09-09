@@ -4,16 +4,17 @@ const loginService = async (userData) => {
   try {
     const { data } = await authAPI.post("/login", userData);
     return {
-      success: data.sucsess,
+      success: true,
       data: data.data,
-      message: data.message,
+      message: "Login successful",
     };
   } catch (error) {
-    console.error("Login failed:", error);
+    const message =
+      error?.response?.data?.message || "Something went wrong during login";
     return {
       success: false,
       data: null,
-      message: error.data.data.message || "Server error. Try again later",
+      message,
     };
   }
 };

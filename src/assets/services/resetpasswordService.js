@@ -6,12 +6,19 @@ const resetpasswordService = async (resettoken, password) => {
       `/reset-password?resettoken=${resettoken}`,
       password
     );
-    if (data.success) return data;
-
-    return JSON.stringify({ error: "Request failed" });
+    return {
+      success: true,
+      data: data.data,
+      message: " reset successful",
+    };
   } catch (error) {
-    console.log("Password reset failed", error);
-    throw error;
+    const message =
+      error?.response?.data?.message || "Something went wrong during reset";
+    return {
+      success: false,
+      data: null,
+      message,
+    };
   }
 };
 

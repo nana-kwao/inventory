@@ -33,8 +33,6 @@ function ForgotPassword() {
       const data = await forgotpasswordService(userData);
       if (data.success) {
         setStatus("success");
-      } else {
-        setStatus("error");
       }
     } catch (error) {
       setStatus("error");
@@ -84,7 +82,7 @@ function ForgotPassword() {
             }}
           >
             <p>
-              {status === "sucess"
+              {status === "success"
                 ? "Reset Link sent to your email. Kindly check"
                 : status === "error"
                 ? "Sorry. Try a valid email"
