@@ -63,12 +63,13 @@ function Login() {
         dispatch(setUser(data.data));
         dispatch(setStatus("success"));
         dashboard("/dashboard");
-      } else {
+      }
+      if (!data.sucess) {
         dispatch(setMessage(data.message || "Error Logging in"));
         dispatch(setStatus("error"));
       }
     } catch (error) {
-      // dispatch(setMessage("Server error. Please try again later"));
+      dispatch(setMessage("Server error. Please try again later"));
       dispatch(setStatus("error"));
       throw error;
     }
