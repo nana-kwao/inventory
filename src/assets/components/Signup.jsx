@@ -27,10 +27,12 @@ function Signup() {
 
   // Check if already logged in
   useEffect(() => {
-    if (user !== null) {
+    const user = sessionStorage.getItem("user");
+    if (user) {
+      dispatch(setUser(JSON.parse(user)));
       dashboard("/dashboard");
     }
-  }, [user, dashboard]);
+  }, [user, dashboard, dispatch]);
 
   // Show or hide password
   const [showPassword, setShowPassword] = useState(false);
