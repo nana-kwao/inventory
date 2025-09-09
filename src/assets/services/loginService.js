@@ -10,7 +10,11 @@ const loginService = async (userData) => {
     };
   } catch (error) {
     console.error("Login failed:", error);
-    throw error;
+    return {
+      success: false,
+      data: null,
+      message: error.data.data.message || "Server error. Try again later",
+    };
   }
 };
 
