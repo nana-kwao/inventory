@@ -75,6 +75,7 @@ function ForgotPassword() {
         </div>
 
         {status && (
+          userData.email = "",
           <div
             style={{
               display: "flex",
