@@ -63,24 +63,19 @@ function Signup() {
     try {
       const data = await signupService(userData);
 
-      if (data?.success) {
+      if (data.success) {
         sessionStorage.setItem("user", JSON.stringify(data.data));
         dispatch(setUser(data.data));
         dispatch(setStatus("success"));
         dashboard("/dashboard");
       } else {
         dispatch(setStatus("error"));
-        dispatch(setMessage(data?.message || "Error Signing up"));
+        dispatch(setMessage(data.message || "Error Signing up"));
         return;
       }
     } catch (error) {
       dispatch(setStatus("error"));
-      const errorMessage =
-        error?.response?.data?.message ||
-        error?.message ||
-        "Server error. Please try again later";
-
-      dispatch(setMessage(errorMessage));
+      dispatch(setMessage("Server error. Please try again later"));
       throw error;
     }
   };
