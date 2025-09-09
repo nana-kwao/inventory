@@ -57,6 +57,7 @@ function Login() {
       const data = await loginService(userData);
 
       if (data?.success) {
+        sessionStorage.setItem("user", JSON.stringify(data.data));
         dispatch(setUser(data.data));
         dispatch(setStatus("success"));
         dashboard("/dashboard");

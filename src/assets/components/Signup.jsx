@@ -62,6 +62,7 @@ function Signup() {
       const data = await signupService(userData);
 
       if (data?.success) {
+        sessionStorage.setItem("user", JSON.stringify(data.data));
         dispatch(setUser(data.data));
         dispatch(setStatus("success"));
         dashboard("/dashboard");
