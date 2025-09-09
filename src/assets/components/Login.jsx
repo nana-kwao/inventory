@@ -68,6 +68,7 @@ function Login() {
         dispatch(setMessage(data.message || "Error Logging in"));
         dispatch(setStatus("error"));
       }
+      console.log(data.message);
     } catch (error) {
       dispatch(setMessage("Server error. Please try again later"));
       dispatch(setStatus("error"));
