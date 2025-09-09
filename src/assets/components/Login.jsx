@@ -64,9 +64,8 @@ function Login() {
         dispatch(setStatus("success"));
         dashboard("/dashboard");
       } else {
-        dispatch(setStatus("error"));
         dispatch(setMessage(data.message || "Error Logging in"));
-        return;
+        dispatch(setStatus("error"));
       }
     } catch (error) {
       dispatch(setStatus("error"));
