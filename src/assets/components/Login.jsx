@@ -56,24 +56,25 @@ function Login() {
     dispatch(setStatus("loading"));
 
     try {
-      const data = await loginService(userData);
+  const data = await loginService(userData);
 
-      if (data.success) {
-        sessionStorage.setItem("user", JSON.stringify(data.data));
-        dispatch(setUser(data.data));
-        dispatch(setStatus("success"));
-        dashboard("/dashboard");
-      }
-      if (!data.sucess) {
-        dispatch(setMessage(data.message || "Error Logging in"));
-        dispatch(setStatus("error"));
-      }
-      console.log(data.message);
-    } catch (error) {
-      dispatch(setMessage("Server error. Please try again later"));
-      dispatch(setStatus("error"));
-      throw error;
-    }
+  if (data.success) {
+    sessionStorage.setItem("user", JSON.stringify(data.data));
+    dispatch(setUser(data.data));
+    dispatch(setStatus("success"));
+    dashboard("/dashboard");
+  } else {
+    dispatch(setMessage(data.message || "Error Logging in"));
+    dispatch(setStatus("error"));
+  }
+
+  console.log(data.message);
+} catch (error) {
+  dispatch(setMessage("Server error. Please try again later"));
+  dispatch(setStatus("error"));
+  throw error;
+}
+
   };
 
   return (
