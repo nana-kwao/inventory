@@ -68,8 +68,8 @@ function Login() {
         dispatch(setStatus("error"));
       }
     } catch (error) {
+      // dispatch(setMessage("Server error. Please try again later"));
       dispatch(setStatus("error"));
-      dispatch(setMessage("Server error. Please try again later"));
       throw error;
     }
   };
