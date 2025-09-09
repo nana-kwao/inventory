@@ -16,6 +16,7 @@ function Logout() {
       const data = await logoutService();
       if (data.success) {
         dispatch(resetUser());
+        sessionStorage.removeItem("user");
         dispatch(setMessage("Logged out Successful"));
         dashboard("/login");
       } else {
