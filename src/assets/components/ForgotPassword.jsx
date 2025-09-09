@@ -9,6 +9,7 @@ function ForgotPassword() {
     email: "",
   });
   const [error, setError] = useState("");
+  const [status, setStatus] = useState("");
 
   const handleUserInputChange = (event) => {
     const { name, value } = event.target;
@@ -27,13 +28,16 @@ function ForgotPassword() {
       setError(error.details[0].message);
       return;
     }
-
+    setStatus("loading");
     try {
       const data = await forgotpasswordService(userData);
       if (data.success) {
-        alert("Reset Link Sent");
+        setStatus("success");
+      } else {
+        setStatus("error");
       }
     } catch (error) {
+      setStatus("error");
       throw Error(error);
     }
   };
@@ -69,6 +73,25 @@ function ForgotPassword() {
         <div style={{ marginTop: "3rem" }}>
           <Link to={"/login"}>Go back to Login</Link>
         </div>
+
+        {status && (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <p>
+              {status === "sucess"
+                ? "Reset Link sent to your email. Kindly check"
+                : status === "error"
+                ? "Sorry. Try a valid email"
+                : ""}
+            </p>
+          </div>
+        )}
       </div>
     </>
   );
