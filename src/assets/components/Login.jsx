@@ -58,16 +58,14 @@ function Login() {
     try {
       const data = await loginService(userData);
 
-      if (data?.success) {
+      if (data?.success === true) {
         sessionStorage.setItem("user", JSON.stringify(data.data));
         dispatch(setUser(data.data));
         dispatch(setStatus("success"));
         dashboard("/dashboard");
-      } else {
-        dispatch(setStatus("error"));
-        dispatch(setMessage(data?.message || "Error Logging in"));
-        return;
       }
+      dispatch(setStatus("error"));
+      dispatch(setMessage(data?.message || "Error Logging in"));
     } catch (error) {
       dispatch(setStatus("error"));
       dispatch(setMessage("Server error. Please try again later"));

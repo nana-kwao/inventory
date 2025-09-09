@@ -66,7 +66,7 @@ function ForgotPassword() {
           {error && <p className="error-text">{error}</p>}
 
           <Button type="submit" style={{ marginTop: "1rem" }}>
-            Submit
+            {status === "loading" ? "...loading" : "Submit"}
           </Button>
         </LoginForm>
 
@@ -75,7 +75,6 @@ function ForgotPassword() {
         </div>
 
         {status && (
-          userData.email = "",
           <div
             style={{
               display: "flex",
