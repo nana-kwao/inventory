@@ -74,7 +74,17 @@ function Login() {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        width: "100vw",
+        height: "auto",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        margin: "0 auto",
+      }}
+    >
       <h1>Welcome Back</h1>
       <h2>Login</h2>
       <p>See your growth and get support</p>

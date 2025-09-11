@@ -1,8 +1,8 @@
-import "./App.css";
 import Login from "./assets/components/Login";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./assets/store/UserSlice";
 import { useEffect } from "react";
+import Dashboard from "./assets/components/Dashboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -14,11 +14,9 @@ function App() {
       dispatch(setUser(JSON.parse(user)));
     }
   }, [dispatch]);
-  return (
-    <>
-      <Login />
-    </>
-  );
+
+  const { user } = useSelector((state) => state.User);
+  return <>{user ? <Dashboard /> : <Login />}</>;
 }
 
 export default App;
