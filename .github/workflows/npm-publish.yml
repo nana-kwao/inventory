@@ -1,0 +1,13 @@
+name: Keep Server Awake
+
+on:
+  schedule:
+    - cron: "*/12 * * * *"  # runs every 15 minutes
+  workflow_dispatch:        # allows manual trigger too
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Curl your server
+        run: curl -s  https://inventory-server-tmqz.onrender.com > /dev/null
