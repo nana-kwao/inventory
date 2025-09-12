@@ -11,3 +11,4 @@ jobs:
     steps:
       - name: Curl your server
         run: curl -s  https://inventory-server-tmqz.onrender.com > /dev/null
+        - run: curl -s https://mycvserver.onrender.com > /dev/null
