@@ -29,7 +29,7 @@ function Login() {
     const _user = sessionStorage.getItem("user");
     if (_user) {
       dispatch(setUser(JSON.parse(_user)));
-      dashboard("/dashboard");
+      dashboard(`/dashboard/${_user.id}`);
     }
   }, [dashboard, dispatch]);
 
@@ -61,7 +61,7 @@ function Login() {
         sessionStorage.setItem("user", JSON.stringify(data.data));
         dispatch(setUser(data.data));
         dispatch(setStatus("success"));
-        dashboard("/dashboard");
+        dashboard(`/dashboard/${data.data.id}`);
       } else {
         dispatch(setStatus("error"));
         dispatch(setMessage(data.message || "Error Logging in"));

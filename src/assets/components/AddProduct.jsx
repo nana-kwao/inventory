@@ -1,6 +1,6 @@
 import { InputFieldWrapper, LoginForm, Button } from "milesuicomponents";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function AddProduct() {
   const [userData, setUserData] = useState({
@@ -10,6 +10,7 @@ function AddProduct() {
     total_quantity: "",
   });
   const dashboard = useNavigate();
+  const { userid } = useParams();
 
   //handle user input
   const handleUserInputChange = (event) => {
@@ -30,7 +31,7 @@ function AddProduct() {
   //hide form
   const handleHideForm = (event) => {
     if (event) event.preventDefault();
-    dashboard("/dashboard/products");
+    dashboard(`/dashboard/${userid}/products`);
   };
 
   return (

@@ -1,22 +1,22 @@
 import Logout from "./Logout";
-import { Link, NavLink } from "react-router";
-import { useSelector} from "react-redux";
+import { Link, NavLink, useParams } from "react-router";
+import { useSelector } from "react-redux";
 
 function DashboardMenuBar() {
   const { menuItemText } = useSelector((state) => state.Menu);
-
+  const { userid } = useParams();
 
   return (
     <>
       <div className={`menu-bar ${menuItemText ? "hide-menu" : ""}`}>
         <div className="logo-wrapper">
-          <Link to={"/dashboard"}>
-            <p>Inventory</p>
+          <Link to={`/dashboard/${userid}`}>
+            <p className="logo">Inventory</p>
           </Link>
         </div>
         <div className="menu-bar-items">
           <NavLink
-            to={"/dashboard/overview"}
+            to={`/dashboard/${userid}/overview`}
             className={({ isActive }) => (isActive ? "menu-active" : "")}
           >
             <i className="fa fa-home" /> {""}
@@ -25,44 +25,39 @@ function DashboardMenuBar() {
             </span>
           </NavLink>
           <NavLink
-
-            to={"/dashboard/products"}
+            to={`/dashboard/${userid}/products`}
             className={({ isActive }) => (isActive ? "menu-active" : "")}
           >
-            <i className="fa-solid fa-list-ul" /> {""}
+            <i className="fa-solid fa-archive" /> {""}
             <span className={`${menuItemText ? "hide-menu" : ""}`}>
               Products
             </span>
           </NavLink>
           <NavLink
-
-            to={"/dashboard/stocks"}
+            to={`/dashboard/${userid}/stocks`}
             className={({ isActive }) => (isActive ? "menu-active" : "")}
           >
-            <i className="fa fa-home" /> {""}
+            <i className="fa fa-list-ol" /> {""}
             <span className={`${menuItemText ? "hide-menu" : ""}`}>Stocks</span>
           </NavLink>
           <NavLink
-
-            to={"/dashboard/order"}
+            to={`/dashboard/${userid}/order`}
             className={({ isActive }) => (isActive ? "menu-active" : "")}
           >
-            <i className="fa fa-home" /> {""}
+            <i className="fa fa-shopping-cart" /> {""}
             <span className={`${menuItemText ? "hide-menu" : ""}`}>Order</span>
           </NavLink>
           <NavLink
-
-            to={"/dashboard/report"}
+            to={`/dashboard/${userid}/report`}
             className={({ isActive }) => (isActive ? "menu-active" : "")}
           >
-            <i className="fa fa-home" /> {""}
+            <i className="fa fa-book" /> {""}
             <span className={`${menuItemText ? "hide-menu" : ""}`}>Report</span>
           </NavLink>
         </div>
         <div className="settings-wrapper">
           <NavLink
-
-            to={"/dashboard/settings"}
+            to={`/dashboard/${userid}/settings`}
             className={({ isActive }) => (isActive ? "menu-active" : "")}
           >
             <i className="fa fa-gear" /> {""}
