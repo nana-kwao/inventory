@@ -10,19 +10,13 @@ function DashboardTitleBar() {
         <Link
           to={"/dashboard"}
           className={`${menuItemText ? "show-item" : "hide-menu"}`}
-          style={{}}
         >
-          <p>Inventory</p>
+          <p className="logo">Inventory</p>
         </Link>
         <div className="search-wrapper">
           <InputFieldWrapper>
-            <input
-              type="seach"
-              name="search"
-              className={`${menuItemText ? "hide-menu" : ""}`}
-              placeholder="search inventory"
-            />
-            <i className={`fa fa-search ${menuItemText ? "" : "show"}`} />
+            <input type="seach" name="search" placeholder="search inventory" />
+            <i className={`fa fa-search show`} />
           </InputFieldWrapper>
         </div>
         <div className="profile-wrapper">
