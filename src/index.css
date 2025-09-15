@@ -45,17 +45,7 @@ a:hover {
 
 /* Layout Container */
 body {
-  display: flex;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-.dashboard-container {
-  display: flex;
-  flex: 1;
-  min-width: 0;
-  height: 100vh;
-  overflow-x: hidden;
+  display: block;
 }
 
 /* Sidebar */
@@ -70,6 +60,7 @@ body {
   padding: 1rem;
   background-color: inherit;
   flex-shrink: 0;
+  overflow-y: hidden;
 }
 
 .menu-bar.collapsed {
@@ -123,14 +114,13 @@ body {
 /* Main Content */
 .main-content {
   width: 100%;
-  background-color: #747bff;
 }
 
 .dashboard-title-bar {
   box-shadow: 1px 0 8px -2px rgba(0, 0, 0, 0.3);
   padding: 0.2rem;
-  width: 100%;
   display: flex;
+  flex-shrink: 0;
   align-items: center;
   transition: width 0.2s;
 }
@@ -147,11 +137,17 @@ body {
 }
 
 .content-wrapper {
-  padding: 1rem;
   flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  overflow: hidden;
 }
 
 .content-data {
+  flex: 1;
+  overflow: auto;
   width: 100%;
 }
 .product-table {

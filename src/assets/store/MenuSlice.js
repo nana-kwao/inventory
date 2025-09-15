@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  menuItemText: false,
+  menuItemText: true,
 };
 
 const MenuSlice = createSlice({
