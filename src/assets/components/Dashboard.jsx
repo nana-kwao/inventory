@@ -15,7 +15,6 @@ function Dashboard() {
   useEffect(() => {
     const user = sessionStorage.getItem("user");
     if (user) {
-      console.log(user);
       dispatch(setUser(JSON.parse(user)));
     }
   }, [dispatch]);
