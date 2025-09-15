@@ -113,6 +113,7 @@ body {
 /* Main Content */
 .main-content {
   width: 100%;
+  background-color: #747bff;
 }
 
 .dashboard-title-bar {
