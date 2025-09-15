@@ -1,16 +1,19 @@
 import { InputFieldWrapper, LoginForm, Button } from "milesuicomponents";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import addProductAuthServices from "../services/addProductService";
+import { productValidationSchema } from "../services/inputvalidation";
 
 function AddProduct() {
+  const { userid } = useParams();
   const [userData, setUserData] = useState({
     name: "",
+    creator: userid,
     sell_price: "",
     buy_price: "",
     total_quantity: "",
   });
   const dashboard = useNavigate();
-  const { userid } = useParams();
 
   //handle user input
   const handleUserInputChange = (event) => {
@@ -32,6 +35,23 @@ function AddProduct() {
   const handleHideForm = (event) => {
     if (event) event.preventDefault();
     dashboard(`/dashboard/${userid}/products`);
+  };
+
+  const handleAddProduct = async (event) => {
+    if (event) event.preventDefault();
+
+    const { error } = productValidationSchema.validate(userData);
+    if (error) return error.details[0].message;
+
+    try {
+      const data = await addProductAuthServices(userData);
+
+      if (data.success === true) {
+        console.log(data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -76,7 +96,7 @@ function AddProduct() {
             </span>
           </div>
           <h2>Add Product</h2>
-          <LoginForm onReset={handleReset}>
+          <LoginForm onReset={handleReset} onSubmit={handleAddProduct}>
             <InputFieldWrapper>
               <input
                 type="text"
