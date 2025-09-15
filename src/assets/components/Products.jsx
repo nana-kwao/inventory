@@ -1,12 +1,14 @@
 import { Link } from "react-router";
 import { useParams } from "react-router";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { DataGrid } from "@mui/x-data-grid";
-import getProductsService from "../services/getProducts";
+import { getProductsFromDB } from "../store/ProductSlice";
 
 function Products() {
   const { userid } = useParams();
-  const [products, setProducts] = useState([]);
+  const { products } = useSelector((state) => state.Products);
+  const dispatch = useDispatch();
   const columns = [
     { field: "id", headerName: "ID", width: 20 },
     { field: "name", headerName: "Name", width: 200 },
@@ -42,19 +44,8 @@ function Products() {
   }));
 
   useEffect(() => {
-    const handleGetProducts = async () => {
-      try {
-        const data = await getProductsService(userid);
-        if (data.success === true) {
-          setProducts(data.data.products);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-    handleGetProducts();
-  }, [userid]);
+    dispatch(getProductsFromDB(userid));
+  }, [dispatch, userid]);
 
   return (
     <>

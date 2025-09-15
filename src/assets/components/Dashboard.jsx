@@ -39,7 +39,7 @@ function Dashboard() {
           height: "100vh",
           display: "flex",
           gap: "0.2rem",
-          alignItems: "start",
+          alignItems: "stretch",
         }}
       >
         {/* menu bar */}
@@ -49,11 +49,10 @@ function Dashboard() {
         <div
           className="main-content"
           style={{
-            width: "100% !important",
-            height: "auto",
             display: "flex",
+            flex: 1,
             flexDirection: "column",
-            alignItems: "start",
+            overflow: "hidden",
           }}
         >
           {/* title bar*/}
