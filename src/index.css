@@ -98,7 +98,7 @@ body {
   gap: 1rem;
   width: 100%;
 }
-.settings-wrapper{
+.settings-wrapper {
   margin-top: auto;
 }
 
@@ -121,9 +121,9 @@ body {
 }
 
 /* Main Content */
-.main-content{
-  background-color: lightblue;
+.main-content {
   width: 100%;
+  background-color: #747bff;
 }
 
 .dashboard-title-bar {
@@ -148,11 +148,22 @@ body {
 
 .content-wrapper {
   padding: 1rem;
-  width: 100%;
+  flex: 1;
 }
 
 .content-data {
   width: 100%;
+}
+.product-table {
+  background-color: rgb(250, 250, 250) !important;
+}
+
+.MuiDataGrid-columnHeaders {
+  color: #213547;
+  font-size: 16px;
+}
+.MuiDataGrid-columnHeaderTitle{
+  font-weight: 900 !important;
 }
 
 /* Responsive styles */
@@ -171,7 +182,7 @@ body {
     margin-top: 2rem;
   }
 
-  .hide-menu{
+  .hide-menu {
     display: none;
   }
 
@@ -188,9 +199,6 @@ body {
 
   .dashboard-title-bar > a {
     display: none !important;
-  }
-  .dashboard-title-bar{
-
   }
 }
 

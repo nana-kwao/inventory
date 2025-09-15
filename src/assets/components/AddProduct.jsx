@@ -48,6 +48,12 @@ function AddProduct() {
 
       if (data.success === true) {
         console.log(data.data);
+        setUserData({
+          name: "",
+          sell_price: "",
+          buy_price: "",
+          total_quantity: "",
+        });
       }
     } catch (error) {
       console.log(error);
@@ -58,8 +64,8 @@ function AddProduct() {
     <>
       <div
         style={{
-          width: "100% !important",
-          height: "100% !important",
+          width: "fit-content !important",
+          height: "fit-content !important",
           backgroundColor: "rgba(0, 0, 0, 0.3)",
           backdropFilter: "blur(10px)",
           display: "flex",
@@ -103,7 +109,7 @@ function AddProduct() {
                 required
                 name="name"
                 id="name"
-                value={userData.name.toUpperCase().trimStart()}
+                value={userData.name}
                 onChange={handleUserInputChange}
                 placeholder="Product name"
               />
