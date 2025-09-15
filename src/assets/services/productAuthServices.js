@@ -1,7 +1,8 @@
 import axios from "axios";
 
 // Base API URL
-const API_BASE_URL = "/api/dashboard";
+const API_BASE_URL =
+  "https://inventory-server-tmqz.onrender.com/api/auth/dashboard";
 
 // Create axios instance with default config
 const productAuthAPI = axios.create({
@@ -44,9 +45,7 @@ productAuthAPI.interceptors.response.use(
     const originalRequest = error.config;
 
     // Handle 401 Unauthorized - try to refresh token
-    if (
-      error.response?.status === 401 &&
-      !originalRequest._retry) {
+    if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       try {
         return axios(originalRequest); // Retry with new token
