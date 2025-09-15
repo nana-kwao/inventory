@@ -60,7 +60,12 @@ body {
   padding: 1rem;
   background-color: inherit;
   flex-shrink: 0;
-  overflow-y: hidden;
+}
+
+.menu-bar.collapsed {
+  width: 60px;
+  min-width: 60px;
+  transition: width 0.2s ease;
 }
 
 .logo {
