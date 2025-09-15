@@ -107,7 +107,10 @@ body {
 /* Main Content */
 .main-content {
   width: 100%;
+<<<<<<< HEAD
   background-color: #747bff;
+=======
+>>>>>>> bfbeef7 (minor ui update && introduced Products store)
 }
 
 .dashboard-title-bar {
