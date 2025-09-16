@@ -62,6 +62,7 @@ body {
   flex-shrink: 0;
   overflow-y: hidden;
 }
+
 .logo {
   color: #213547;
   font-weight: 900;
