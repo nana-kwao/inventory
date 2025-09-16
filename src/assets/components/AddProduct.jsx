@@ -66,7 +66,6 @@ function AddProduct() {
         style={{
           width: "fit-content !important",
           height: "fit-content !important",
-          backgroundColor: "rgba(0, 0, 0, 0.3)",
           backdropFilter: "blur(10px)",
           display: "flex",
           justifyContent: "center",
