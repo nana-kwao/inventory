@@ -61,13 +61,6 @@ body {
   background-color: inherit;
   flex-shrink: 0;
 }
-
-.menu-bar.collapsed {
-  width: 60px;
-  min-width: 60px;
-  transition: width 0.2s ease;
-}
-
 .logo {
   color: #213547;
   font-weight: 900;
