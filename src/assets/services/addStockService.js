@@ -1,17 +1,17 @@
 import productAuthAPI from "./productAuthServices";
 
-const addProductServices = async (userData) => {
+const addStockAuthServices = async (userData) => {
   try {
-    const { data } = await productAuthAPI.post("/add-product", userData);
+    const { data } = await productAuthAPI.post("/add-stock", userData);
     return {
       success: true,
       data: data.data,
-      message: "Product created",
+      message: "Stock created",
     };
   } catch (error) {
     const message =
       error?.response?.data?.message ||
-      "Something went wrong during product creation";
+      "Something went wrong during stock creation";
 
     console.log(error);
     return {
@@ -22,4 +22,4 @@ const addProductServices = async (userData) => {
   }
 };
 
-export default addProductServices;
+export default addStockAuthServices;

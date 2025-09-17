@@ -19,8 +19,10 @@ import ForgotPassword from "./assets/components/ForgotPassword.jsx";
 import ResetPassword from "./assets/components/ResetPassword.jsx";
 import Dashboard from "./assets/components/Dashboard.jsx";
 import Products from "./assets/components/Products.jsx";
+import Stocks from "./assets/components/Stocks.jsx";
 import Overview from "./assets/components/Overview.jsx";
 import AddProduct from "./assets/components/AddProduct.jsx";
+import AddStock from "./assets/components/AddStock.jsx";
 import PageNotFound from "./assets/components/404.jsx";
 
 createRoot(document.getElementById("root")).render(
@@ -37,7 +39,9 @@ createRoot(document.getElementById("root")).render(
             <Route path="/dashboard/:userid" element={<Dashboard />}>
               <Route index element={<Navigate to={"overview"} replace />} />
               <Route path="products" element={<Products />} />
+              <Route path="stocks" element={<Stocks />} />
               <Route path="add-product" element={<AddProduct />} />
+              <Route path="add-stock" element={<AddStock />} />
               <Route path="overview" element={<Overview />} />
             </Route>
             <Route path={"*"} element={<PageNotFound />} />

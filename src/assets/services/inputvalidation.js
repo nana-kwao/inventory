@@ -99,10 +99,13 @@ const productValidationSchema = Joi.object({
 
 //stock
 const stockValidationSchema = Joi.object({
-  product: Joi.string()
-    .length(24)
+  name: Joi.string()
     .required()
     .messages({ "string.empty": "Product name cannot be empty" }),
+  product: Joi.string()
+    .length(24)
+    .optional()
+    .messages({ "string.empty": "leave Product id" }),
   creator: Joi.string()
     .length(24)
     .required()
@@ -111,6 +114,14 @@ const stockValidationSchema = Joi.object({
     .min(1)
     .required()
     .messages({ "number.empty": "Added Quantity must be more than 0" }),
+  sell_price: Joi.string()
+    .optional()
+    .allow(null, "")
+    .messages({ "string.empty": "price can be marked empty" }),
+  buy_price: Joi.string()
+    .optional()
+    .allow(null, "")
+    .messages({ "string.empty": "price can be marked empty" }),
 });
 
 //order
