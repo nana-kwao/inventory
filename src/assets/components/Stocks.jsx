@@ -12,7 +12,7 @@ function Stocks() {
   const dispatch = useDispatch();
   const columns = [
     { field: "id", headerName: "ID", width: 20 },
-    {field: "date", headerName: "Date", Width: 50},
+    { field: "date", headerName: "Date", Width: 50 },
     { field: "name", headerName: "Name", width: 150 },
     { field: "price", headerName: "Price", width: 100 },
     { field: "buy_price", headerName: "Entry Price", width: 100 },

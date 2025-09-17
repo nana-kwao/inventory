@@ -1,9 +1,11 @@
 import { InputFieldWrapper, LoginForm, Button } from "milesuicomponents";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import addStockAuthServices from "../services/addStockService";
 import { stockValidationSchema } from "../services/inputvalidation";
 import { useSelector } from "react-redux";
+import { getProductsFromDB } from "../store/ProductSlice";
+import { useDispatch } from "react-redux";
 
 function AddStock() {
   const { products } = useSelector((state) => state.Products);
@@ -16,6 +18,7 @@ function AddStock() {
     added_quantity: "",
   });
   const dashboard = useNavigate();
+  const dispatch = useDispatch();
 
   //handle user input
   const handleUserInputChange = (event) => {
@@ -32,6 +35,10 @@ function AddStock() {
       added_quantity: "",
     });
   };
+
+  useEffect(() => {
+    dispatch(getProductsFromDB(userid));
+  }, [dispatch, userid]);
 
   //hide form
   const handleHideForm = (event) => {
