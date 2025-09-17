@@ -27,11 +27,11 @@ a:hover {
 }
 
 .input-error input {
-  border: 0.2em solid #ff000093 !important;
+  border: 0.2em solid #f73f3f93 !important;
 }
 
 .error-text {
-  color: #ff000093 !important;
+  color: #f3383893 !important;
 }
 
 .hide-product-form,
@@ -154,6 +154,10 @@ body {
 .MuiDataGrid-columnHeaderTitle{
   font-weight: 900 !important;
 }
+
+.add-product .input-field-wrapper input{
+  border-width: 0.1em !important;
+} 
 
 /* Responsive styles */
 @media screen and (max-width: 767px) {

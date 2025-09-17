@@ -1,18 +1,10 @@
-import axios from "axios";
-
-const refreshAPI = axios.create({
-  baseURL: "https://inventory-server-tmqz.onrender.com/api/dashboard",
-  timeout: 10000,
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+import authAPI from "./authService";
 
 const refreshtoken = sessionStorage.getItem("refreshtoken");
 
 const getNewToken = async () => {
   try {
-    const { data } = await refreshAPI.post("/refresh", {
+    const { data } = await authAPI.post("/refresh", {
       refreshtoken,
     });
     const newAccessToken = data.data.tokenInfo.accesstoken;

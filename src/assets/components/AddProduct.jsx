@@ -47,13 +47,13 @@ function AddProduct() {
       const data = await addProductAuthServices(userData);
 
       if (data.success === true) {
-        console.log(data.data);
         setUserData({
           name: "",
           sell_price: "",
           buy_price: "",
           total_quantity: "",
         });
+        dashboard(`/dashboard/${userid}/products`);
       }
     } catch (error) {
       console.log(error);
@@ -101,7 +101,11 @@ function AddProduct() {
             </span>
           </div>
           <h2>Add Product</h2>
-          <LoginForm onReset={handleReset} onSubmit={handleAddProduct}>
+          <LoginForm
+            onReset={handleReset}
+            onSubmit={handleAddProduct}
+            className="add-product"
+          >
             <InputFieldWrapper>
               <input
                 type="text"
@@ -155,13 +159,21 @@ function AddProduct() {
             >
               <Button
                 type="reset"
-                style={{ backgroundColor: "#ff000093", color: "#fff" }}
+                style={{
+                  backgroundColor: "#f72d2d93",
+                  color: "#fff",
+                  fontWeight: "900",
+                }}
               >
                 Reset
               </Button>
               <Button
                 type="submit"
-                style={{ backgroundColor: "#0d8d1493", color: "#fff" }}
+                style={{
+                  backgroundColor: "#28e73193",
+                  color: "#fff",
+                  fontWeight: "900",
+                }}
               >
                 Add
               </Button>
