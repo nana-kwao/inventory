@@ -1,11 +1,12 @@
-import productAuthAPI from "./productAuthServices";
+import authAPI from "./authService";
 
-// get refresh token
 const refreshtoken = sessionStorage.getItem("refreshtoken");
 
 const getNewToken = async () => {
   try {
-    const { data } = await productAuthAPI.post("/refresh", refreshtoken);
+    const { data } = await authAPI.post("/refresh", {
+      refreshtoken,
+    });
     const newAccessToken = data.data.tokenInfo.accesstoken;
     sessionStorage.setItem("accesstoken", newAccessToken);
     return {
@@ -15,7 +16,7 @@ const getNewToken = async () => {
   } catch (error) {
     const message =
       error?.response?.data?.message ||
-      "Something went wrong during product creation";
+      "Something went wrong during token refresh";
 
     console.log(error);
     return {

@@ -48,26 +48,26 @@ productAuthAPI.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    // Handle 401 Unauthorized - try to refresh token
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
 
       try {
-        let newAccessToken;
         const res = await getNewToken();
         if (res.success === true) {
-          newAccessToken = sessionStorage.getItem("accesstoken");
+          const newAccessToken = sessionStorage.getItem("accesstoken");
+          if (newAccessToken) {
+            originalRequest.headers[
+              "Authorization"
+            ] = `Bearer ${newAccessToken}`;
+          }
+          return productAuthAPI(originalRequest);
         }
-        originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
-
-        // Retry the original request with the new token
-        return axios(originalRequest);
       } catch (refreshError) {
+        console.error("Refresh token failed:", refreshError);
         return Promise.reject(refreshError);
       }
     }
 
-    // Handle rate limiting
     if (error.response?.status === 429) {
       const retryAfter = error.response.headers["retry-after"];
       if (retryAfter) {
@@ -75,7 +75,6 @@ productAuthAPI.interceptors.response.use(
       }
     }
 
-    // Handle network errors
     if (!error.response) {
       console.error("Network error:", error.message);
     }

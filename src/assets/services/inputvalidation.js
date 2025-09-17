@@ -14,17 +14,11 @@ const signupValidationSchema = Joi.object({
     "string.email": "Please enter a valid email address.",
     "string.empty": "Email is required.",
   }),
-  phone: Joi.string()
-    .min(10)
-    .max(13)
-    .required()
-    .messages({
-      "string.min": "Mobile number cannot be less than 10",
-      "string.max": "Mobile number cannot be more than 10",
-      "string.empty": "Mobile number cannot be empty",
-    })
-    .regex(/^(?:\+233|0)\d{9}$/)
-    .messages({ "string.pattern.base": "Telephone example format 0234567890" }),
+  phone: Joi.string().min(10).max(10).required().messages({
+    "string.min": "Mobile number cannot be less than 10",
+    "string.max": "Mobile number cannot be more than 10",
+    "string.empty": "Mobile number cannot be empty",
+  }),
   password: Joi.string()
     .min(8)
     .required()
@@ -39,7 +33,7 @@ const signupValidationSchema = Joi.object({
     }),
 });
 
-//forgot email
+//forgot password
 const forgotPasswordValidationSchema = Joi.object({
   email: Joi.string().email().required().messages({
     "string.email": "Please enter a valid email address.",
@@ -85,17 +79,22 @@ const productValidationSchema = Joi.object({
     .length(24)
     .required()
     .messages({ "string.empty": "User name cannot be empty" }),
-  sell_price: Joi.string()
+  sell_price: Joi.number()
     .min(2)
     .required()
-    .messages({ "string.empty": "Selling price cannot be empty" }),
-  buy_price: Joi.string()
+    .messages({ "number.empty": "Selling price cannot be empty" }),
+  buy_price: Joi.number()
     .min(2)
-    .messages({ "string.min": "Buy price must be at least 2 characters long" }),
+    .required()
+    .messages({ "number.min": "Buy price must be at least 2 characters long" }),
+  sold_quantity: Joi.number().optional(),
   total_quantity: Joi.number()
     .min(1)
     .required()
     .messages({ "number.empty": "Total Quantity must be more than 0" }),
+  sold_amount: Joi.number().optional(),
+  total_revenue: Joi.number().optional(),
+  status: Joi.string().optional(),
 });
 
 //stock
@@ -142,8 +141,8 @@ const orderValidationSchema = Joi.object({
 });
 export {
   signupValidationSchema,
-  resetPasswordValidationSchema,
   forgotPasswordValidationSchema,
+  resetPasswordValidationSchema,
   loginValidationSchema,
   productValidationSchema,
   stockValidationSchema,
