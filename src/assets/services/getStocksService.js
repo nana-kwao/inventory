@@ -1,8 +1,8 @@
 import productAuthAPI from "./productAuthServices";
 
-const getProductsService = async (userId) => {
+const getStocksService = async (userId) => {
   try {
-    const { data } = await productAuthAPI.get(`/products?userid=${userId}`);
+    const { data } = await productAuthAPI.get(`/stocks?userid=${userId}`);
     return {
       success: true,
       data: data.data,
@@ -18,4 +18,4 @@ const getProductsService = async (userId) => {
     };
   }
 };
-export default getProductsService;
+export default getStocksService;

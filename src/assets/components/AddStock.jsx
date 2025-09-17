@@ -1,17 +1,19 @@
 import { InputFieldWrapper, LoginForm, Button } from "milesuicomponents";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import addProductServices from "../services/addProductService";
-import { productValidationSchema } from "../services/inputvalidation";
+import addStockAuthServices from "../services/addStockService";
+import { stockValidationSchema } from "../services/inputvalidation";
+import { useSelector } from "react-redux";
 
-function AddProduct() {
+function AddStock() {
+  const { products } = useSelector((state) => state.Products);
   const { userid } = useParams();
   const [userData, setUserData] = useState({
     name: "",
     creator: userid,
     sell_price: "",
     buy_price: "",
-    total_quantity: "",
+    added_quantity: "",
   });
   const dashboard = useNavigate();
 
@@ -27,33 +29,34 @@ function AddProduct() {
       name: "",
       sell_price: "",
       buy_price: "",
-      total_quantity: "",
+      added_quantity: "",
     });
   };
 
   //hide form
   const handleHideForm = (event) => {
     if (event) event.preventDefault();
-    dashboard(`/dashboard/${userid}/products`);
+    dashboard(`/dashboard/${userid}/stocks`);
   };
 
-  const handleAddProduct = async (event) => {
+  const handleAddStock = async (event) => {
     if (event) event.preventDefault();
 
-    const { error } = productValidationSchema.validate(userData);
+    const { error } = stockValidationSchema.validate(userData);
+    console.log(error);
     if (error) return error.details[0].message;
 
     try {
-      const data = await addProductServices(userData);
+      const data = await addStockAuthServices(userData);
 
       if (data.success === true) {
         setUserData({
           name: "",
           sell_price: "",
           buy_price: "",
-          total_quantity: "",
+          added_quantity: "",
         });
-        dashboard(`/dashboard/${userid}/products`);
+        dashboard(`/dashboard/${userid}/stocks`);
       }
     } catch (error) {
       console.log(error);
@@ -100,32 +103,36 @@ function AddProduct() {
               <i className="fa-solid fa-xmark"></i>
             </span>
           </div>
-          <h2>New Product</h2>
+          <h2>New Stock</h2>
           <LoginForm
             onReset={handleReset}
-            onSubmit={handleAddProduct}
-            className="add-product"
+            onSubmit={handleAddStock}
+            className="add-stock"
           >
             <InputFieldWrapper>
-              <input
-                type="text"
+              <select
                 required
                 name="name"
                 id="name"
                 value={userData.name}
                 onChange={handleUserInputChange}
-                placeholder="Product name"
-              />
+              >
+                <option value={""}>--choose a product--</option>
+                {products.map((product, idx) => (
+                  <option key={idx} value={product.name}>
+                    {product.name}
+                  </option>
+                ))}
+              </select>
             </InputFieldWrapper>
             <InputFieldWrapper>
               <input
                 type="number"
-                required
                 name="sell_price"
                 id="sell_price"
                 value={userData.sell_price}
                 onChange={handleUserInputChange}
-                placeholder="Selling Price"
+                placeholder="New Selling Price"
               />
             </InputFieldWrapper>
             <InputFieldWrapper>
@@ -135,18 +142,18 @@ function AddProduct() {
                 id="buy_price"
                 value={userData.buy_price}
                 onChange={handleUserInputChange}
-                placeholder="Buy Price"
+                placeholder="New Buy Price"
               />
             </InputFieldWrapper>
             <InputFieldWrapper>
               <input
                 type="number"
                 required
-                name="total_quantity"
-                id="total_quantity"
-                value={userData.total_quantity}
+                name="added_quantity"
+                id="added_quantity"
+                value={userData.added_quantity}
                 onChange={handleUserInputChange}
-                placeholder="Total Quantity in Stock"
+                placeholder="Quantity Added"
               />
             </InputFieldWrapper>
             <div
@@ -185,4 +192,4 @@ function AddProduct() {
   );
 }
 
-export default AddProduct;
+export default AddStock;

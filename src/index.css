@@ -101,7 +101,7 @@ body {
 
 .menu-active,
 .menu-bar-items a:hover {
-  color: blue;
+  color: rgb(5, 5, 105);
 }
 
 /* Main Content */
@@ -155,10 +155,17 @@ body {
   font-weight: 900 !important;
 }
 
-.add-product .input-field-wrapper input{
+.add-product .input-field-wrapper input, .add-stock .input-field-wrapper input{
   border-width: 0.1em !important;
 } 
-
+.add-stock .input-field-wrapper select{
+  width: 280px !important;
+  height: 48px !important;
+  font-size: 18px !important;
+  text-align: center !important;
+  color: #4b657c;
+  padding: 0.2rem !important;
+}
 /* Responsive styles */
 @media screen and (max-width: 767px) {
   body {
