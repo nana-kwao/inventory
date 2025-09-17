@@ -2,7 +2,7 @@ import axios from "axios";
 import getNewToken from "./tokenService";
 
 // Base API URL
-const API_BASE_URL = "/api/dashboard";
+const API_BASE_URL = "https://inventory-server-tmqz.onrender.com/api/dashboard";
 
 // Create axios instance with default config
 const productAuthAPI = axios.create({

@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:5000",
+        target: "https://inventory-server-tmqz.onrender.com:10000",
         changeOrigin: true,
         secure: false,
       },

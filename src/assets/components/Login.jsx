@@ -65,7 +65,6 @@ function Login() {
         );
         sessionStorage.setItem("accesstoken", data.data.tokenInfo.accesstoken);
         dispatch(setUser(data.data));
-
         dispatch(setStatus("success"));
         dashboard(`/dashboard/${data.data.id}`);
       } else {
@@ -78,10 +77,7 @@ function Login() {
       throw error;
     }
   };
-  console.log(
-    sessionStorage.getItem("accesstoken"),
-    sessionStorage.getItem("refreshtoken")
-  );
+
   return (
     <div
       style={{
