@@ -12,6 +12,7 @@ function Stocks() {
   const dispatch = useDispatch();
   const columns = [
     { field: "id", headerName: "ID", width: 20 },
+    {field: "date", headerName: "Date", Width: 50},
     { field: "name", headerName: "Name", width: 150 },
     { field: "price", headerName: "Price", width: 100 },
     { field: "buy_price", headerName: "Entry Price", width: 100 },
@@ -26,6 +27,7 @@ function Stocks() {
 
   const rows = stocks.map((item, index) => ({
     id: index + 1,
+    date: item.date,
     name: item.name,
     price: `$ ${item.sell_price}`,
     buy_price: `$ ${item.buy_price}`,
