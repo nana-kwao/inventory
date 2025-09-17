@@ -4,9 +4,6 @@ import getNewToken from "./tokenService";
 // Base API URL
 const API_BASE_URL = "/api/dashboard";
 
-//access token
-const accesstoken = sessionStorage.getItem("accesstoken");
-
 // Create axios instance with default config
 const productAuthAPI = axios.create({
   baseURL: API_BASE_URL,
@@ -22,6 +19,7 @@ const productAuthAPI = axios.create({
 productAuthAPI.interceptors.request.use(
   (config) => {
     //add access token to request
+    const accesstoken = sessionStorage.getItem("accesstoken");
     config.headers.Authorization = `Bearer ${accesstoken}`;
 
     // Add timestamp to prevent caching
