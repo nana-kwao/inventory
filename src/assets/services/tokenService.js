@@ -1,11 +1,20 @@
-import productAuthAPI from "./productAuthServices";
+import axios from "axios";
 
-// get refresh token
+const refreshAPI = axios.create({
+  baseURL: "https://inventory-server-tmqz.onrender.com/api/dashboard",
+  timeout: 10000,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
 const refreshtoken = sessionStorage.getItem("refreshtoken");
 
 const getNewToken = async () => {
   try {
-    const { data } = await productAuthAPI.post("/refresh", refreshtoken);
+    const { data } = await refreshAPI.post("/refresh", {
+      refreshtoken,
+    });
     const newAccessToken = data.data.tokenInfo.accesstoken;
     sessionStorage.setItem("accesstoken", newAccessToken);
     return {
@@ -15,7 +24,7 @@ const getNewToken = async () => {
   } catch (error) {
     const message =
       error?.response?.data?.message ||
-      "Something went wrong during product creation";
+      "Something went wrong during token refresh";
 
     console.log(error);
     return {
