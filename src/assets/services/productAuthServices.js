@@ -1,8 +1,11 @@
 import axios from "axios";
+import getNewToken from "./tokenService";
 
 // Base API URL
-const API_BASE_URL =
-  "https://inventory-server-tmqz.onrender.com/api/dashboard";
+const API_BASE_URL = "https://inventory-server-tmqz.onrender.com/api/dashboard";
+
+//access token
+const accesstoken = sessionStorage.getItem("accesstoken");
 
 // Create axios instance with default config
 const productAuthAPI = axios.create({
@@ -18,6 +21,9 @@ const productAuthAPI = axios.create({
 // Request interceptor to add auth token to headers
 productAuthAPI.interceptors.request.use(
   (config) => {
+    //add access token to request
+    config.headers.Authorization = `Bearer ${accesstoken}`;
+
     // Add timestamp to prevent caching
     config.headers["X-Request-Time"] = Date.now();
 
@@ -47,8 +53,17 @@ productAuthAPI.interceptors.response.use(
     // Handle 401 Unauthorized - try to refresh token
     if (error.response?.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
+
       try {
-        return axios(originalRequest); // Retry with new token
+        let newAccessToken;
+        const res = await getNewToken();
+        if (res.success === true) {
+          newAccessToken = sessionStorage.getItem("accesstoken");
+        }
+        originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
+
+        // Retry the original request with the new token
+        return axios(originalRequest);
       } catch (refreshError) {
         return Promise.reject(refreshError);
       }
