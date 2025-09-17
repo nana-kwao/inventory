@@ -67,12 +67,9 @@ function Signup() {
         sessionStorage.setItem("user", JSON.stringify(data.data));
         sessionStorage.setItem(
           "refreshtoken",
-          JSON.stringify(data.data.tokenInfo.refreshtoken)
+          data.data.tokenInfo.refreshtoken
         );
-        sessionStorage.setItem(
-          "accesstoken",
-          JSON.stringify(data.data.tokenInfo.accesstoken)
-        );
+        sessionStorage.setItem("accesstoken", data.data.tokenInfo.accesstoken);
         dispatch(setUser(data.data));
         dispatch(setStatus("success"));
         dashboard("/dashboard");
